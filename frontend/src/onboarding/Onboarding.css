@@ -1,0 +1,77 @@
+.ob-container {
+  max-width: 520px;
+  margin: 40px auto;
+  padding: 10px;
+}
+
+.ob-title {
+  text-align: center;
+  font-size: 26px;
+  color: #1e3a8a;
+  margin-bottom: 20px;
+}
+
+.ob-card {
+  background: white;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+}
+
+.ob-card input,
+.ob-card select {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 15px;
+}
+
+.ob-btn {
+  width: 100%;
+  padding: 12px;
+  background: #1e3a8a;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.ob-btn-sm {
+  padding: 10px 16px;
+  background: #059669;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  margin-top: 12px;
+  cursor: pointer;
+}
+
+/* ---------- TREE PREVIEW ---------- */
+
+.tree-empty {
+  margin-top: 10px;
+  color: #64748b;
+}
+
+.tree-preview {
+  margin-top: 20px;
+  padding-left: 12px;
+  border-left: 3px solid #94a3b8;
+}
+
+.tree-node {
+  margin-bottom: 10px;
+}
+
+.tree-preview ul {
+  margin-top: 8px;
+  padding-left: 20px;
+  border-left: 1px dashed #cbd5e1;
+}
+
+.tree-preview li {
+  margin: 6px 0;
+}

@@ -1,0 +1,78 @@
+.tree-wrapper {
+  padding: 30px;
+  text-align: center;
+  background: #fefcf5;
+  min-height: 100vh;
+}
+
+.tree-title {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #1e3a8a;
+}
+
+/* STRUCTURE */
+.tree-node-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* CONNECTING LINES */
+.tree-node-container::after {
+  content: "";
+  width: 2px;
+  height: 30px;
+  background: #cbd5e1;
+  position: absolute;
+  top: -20px;
+}
+
+.tree-node-container:first-child::after {
+  display: none;
+}
+
+.tree-children {
+  display: flex;
+  gap: 60px;
+  margin-top: 20px;
+  position: relative;
+}
+
+/* Horizontal line above children */
+.tree-children::before {
+  content: "";
+  height: 2px;
+  width: 100%;
+  background: #cbd5e1;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* INDIVIDUAL NODE */
+.tree-node {
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.circle {
+  width: 70px;
+  height: 70px;
+  border: 4px solid #1e3a8a;
+  border-radius: 50%;
+  background: white;
+}
+
+.label {
+  margin-top: 10px;
+  color: #0f172a;
+}
+
+.role {
+  font-size: 13px;
+  color: #64748b;
+}

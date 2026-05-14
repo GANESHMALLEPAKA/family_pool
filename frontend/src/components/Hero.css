@@ -1,0 +1,673 @@
+/* ============================================================
+   HERO - VISUAL PREMIUM UI STYLES
+   Dashboard Preview | Floating Cards | Stunning Animations
+   ============================================================ */
+
+.hero {
+  background: linear-gradient(135deg, #0f0c29 0%, #1a1a4e 40%, #24243e 100%);
+  color: white;
+  padding: 80px 0 100px;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+/* ==================== ANIMATED BACKGROUND ==================== */
+.hero-bg-elements {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.floating-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: morphBlob 20s ease-in-out infinite;
+}
+
+.shape-1 {
+  width: 600px;
+  height: 600px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.4), rgba(139, 92, 246, 0.2));
+  top: -200px;
+  right: -100px;
+}
+
+.shape-2 {
+  width: 500px;
+  height: 500px;
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.3), rgba(244, 114, 182, 0.15));
+  bottom: -150px;
+  left: -100px;
+  animation-delay: 5s;
+}
+
+.shape-3 {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.35), rgba(6, 182, 212, 0.2));
+  top: 40%;
+  left: 20%;
+  animation-delay: 10s;
+}
+
+.shape-4 {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.3), rgba(245, 158, 11, 0.15));
+  top: 20%;
+  right: 30%;
+  animation-delay: 7s;
+}
+
+.shape-5 {
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.35), rgba(52, 211, 153, 0.2));
+  bottom: 30%;
+  right: 10%;
+  animation-delay: 12s;
+}
+
+/* ==================== CONTAINER ==================== */
+.hero-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 60px;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* ==================== HERO CONTENT ==================== */
+.hero-content {
+  animation: fadeInUp 0.8s var(--ease-out);
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.1));
+  border: 1px solid rgba(251, 191, 36, 0.4);
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 28px;
+  color: #fbbf24;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.badge-icon {
+  font-size: 1.1rem;
+}
+
+.hero-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  letter-spacing: -0.04em;
+  color: white;
+}
+
+.highlight {
+  background: linear-gradient(135deg, #00d4ff, #6366f1, #a855f7);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmerText 3s linear infinite;
+}
+
+.highlight-gold {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b, #fcd34d);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmerText 3s linear infinite;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.85;
+  margin-bottom: 40px;
+  line-height: 1.8;
+  max-width: 520px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ==================== BUTTONS ==================== */
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.hero-actions .btn {
+  padding: 18px 32px;
+  font-size: 1rem;
+  border-radius: 14px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-decoration: none;
+  border: none;
+}
+
+.hero-actions .btn-primary {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  box-shadow: 0 16px 48px rgba(99, 102, 241, 0.4);
+}
+
+.hero-actions .btn-primary:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 24px 56px rgba(99, 102, 241, 0.5);
+}
+
+.hero-actions .btn-glass {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  backdrop-filter: blur(10px);
+}
+
+.hero-actions .btn-glass:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-4px);
+}
+
+/* ==================== TRUST INDICATORS ==================== */
+.hero-trust {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.trust-icon {
+  font-size: 2rem;
+  width: 52px;
+  height: 52px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trust-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.trust-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+}
+
+.trust-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.trust-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ==================== DASHBOARD PREVIEW ==================== */
+.hero-visual {
+  animation: fadeInUp 1s var(--ease-out) 0.3s both;
+  position: relative;
+}
+
+.dashboard-preview {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border-radius: 24px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
+  transition: transform 0.5s ease;
+}
+
+.dashboard-preview:hover {
+  transform: perspective(1000px) rotateY(-2deg) rotateX(1deg) scale(1.02);
+}
+
+/* Preview Header - Browser Bar */
+.preview-header {
+  background: rgba(30, 41, 59, 0.9);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.preview-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.preview-dots span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.preview-dots span:nth-child(1) {
+  background: #ff5f57;
+}
+
+.preview-dots span:nth-child(2) {
+  background: #ffbd2e;
+}
+
+.preview-dots span:nth-child(3) {
+  background: #28c840;
+}
+
+.preview-title {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+}
+
+/* Stats Cards */
+.preview-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 20px;
+}
+
+.preview-stat-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.preview-stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+.stat-primary::before {
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+}
+
+.stat-gold::before {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stat-primary .stat-icon {
+  background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+}
+
+.stat-gold .stat-icon {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.stat-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.stat-trend {
+  margin-left: auto;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.stat-trend.positive {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+/* Goals Preview */
+.preview-goals {
+  padding: 0 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.preview-goal {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.goal-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.goal-icon {
+  font-size: 1.2rem;
+}
+
+.goal-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #334155;
+  flex: 1;
+}
+
+.goal-percent {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #6366f1;
+}
+
+.goal-bar {
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.goal-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  border-radius: 10px;
+  transition: width 1.5s ease;
+  position: relative;
+}
+
+.goal-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmerProgress 2s ease-in-out infinite;
+}
+
+.goal-fill.gold {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+.goal-fill.green {
+  background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+/* Family Avatars */
+.preview-family {
+  padding: 16px 20px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.family-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+}
+
+.family-avatars {
+  display: flex;
+  gap: -8px;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  border: 3px solid rgba(30, 41, 59, 0.9);
+  margin-left: -10px;
+  transition: transform 0.3s ease;
+}
+
+.avatar:first-child {
+  margin-left: 0;
+}
+
+.avatar:hover {
+  transform: scale(1.15) translateY(-4px);
+  z-index: 10;
+}
+
+.avatar.add {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* ==================== FLOATING CARDS ==================== */
+.floating-card {
+  position: absolute;
+  background: white;
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  animation: float 6s ease-in-out infinite;
+}
+
+.card-ai {
+  top: -20px;
+  right: -30px;
+  animation-delay: 0s;
+}
+
+.card-notification {
+  bottom: 60px;
+  left: -40px;
+  animation-delay: 3s;
+}
+
+.card-icon {
+  font-size: 1.8rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.card-ai .card-icon {
+  background: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+}
+
+.card-notification .card-icon {
+  background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+}
+
+.card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.card-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.card-desc {
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1200px) {
+  .hero-container {
+    padding: 0 40px;
+    gap: 60px;
+  }
+
+  .hero-title {
+    font-size: 3.2rem;
+  }
+
+  .floating-card {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    padding: 60px 0 80px;
+    min-height: auto;
+  }
+
+  .hero-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 48px;
+    padding: 0 32px;
+  }
+
+  .hero-subtitle {
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-trust {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .dashboard-preview {
+    transform: none;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .dashboard-preview:hover {
+    transform: scale(1.02);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-container {
+    padding: 0 20px;
+  }
+
+  .hero-badge {
+    font-size: 0.8rem;
+    padding: 8px 16px;
+  }
+
+  .hero-title {
+    font-size: 2.4rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+
+  .hero-trust {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .trust-divider {
+    display: none;
+  }
+
+  .preview-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .floating-shape {
+    display: none;
+  }
+}

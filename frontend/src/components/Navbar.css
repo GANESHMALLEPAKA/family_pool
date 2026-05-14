@@ -1,0 +1,299 @@
+/* ============================================================
+   NAVBAR - ULTRA PREMIUM UI STYLES
+   Neon Glow | Animated Gradient | Stunning Interactions
+   ============================================================ */
+
+.navbar {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Animated neon gradient line */
+.navbar::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-aurora);
+  background-size: 200% auto;
+  animation: shimmerText 3s linear infinite;
+  box-shadow: var(--glow-blue);
+  opacity: 0.6;
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-10);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+
+/* Logo - Neon Animated */
+.nav-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  background: var(--gradient-aurora);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: all var(--duration-base);
+  letter-spacing: -0.03em;
+  animation: shimmerText 4s linear infinite;
+}
+
+.nav-logo:hover {
+  text-shadow: var(--glow-blue);
+  transform: scale(1.03);
+}
+
+/* Navigation Menu */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.nav-link {
+  color: var(--slate-500);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all var(--duration-base) var(--ease-spring);
+  position: relative;
+  padding: var(--space-3) var(--space-5);
+  font-size: 0.95rem;
+  white-space: nowrap;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* Gradient background on hover */
+.nav-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-aurora);
+  opacity: 0;
+  transition: opacity var(--duration-base);
+  border-radius: var(--radius-lg);
+}
+
+.nav-link:hover {
+  color: var(--neon-blue);
+}
+
+.nav-link:hover::before {
+  opacity: 0.1;
+}
+
+.nav-link.active {
+  color: var(--neon-blue);
+  font-weight: 700;
+}
+
+.nav-link.active::before {
+  opacity: 0.15;
+}
+
+/* Active indicator - Neon dot */
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: var(--neon-blue);
+  border-radius: 50%;
+  box-shadow: var(--glow-blue);
+  animation: pulse 2s infinite;
+}
+
+/* User Menu */
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  color: var(--slate-700);
+  margin-left: var(--space-8);
+  padding-left: var(--space-8);
+  border-left: 2px solid var(--slate-100);
+}
+
+.user-menu span {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--slate-700);
+}
+
+.logout-btn {
+  background: linear-gradient(135deg, var(--slate-50), var(--slate-100));
+  border: 2px solid var(--slate-200);
+  padding: 12px 24px;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--duration-base) var(--ease-spring);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--slate-600);
+  font-family: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.logout-btn:hover {
+  background: white;
+  border-color: var(--neon-pink);
+  color: var(--neon-pink);
+  transform: translateY(-3px);
+  box-shadow: var(--glow-pink);
+}
+
+/* Mobile hamburger toggle */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.7rem;
+  cursor: pointer;
+  color: var(--neon-blue);
+  padding: var(--space-2);
+  transition: transform var(--duration-fast);
+}
+
+.menu-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1100px) {
+  .nav-menu {
+    gap: var(--space-1);
+  }
+
+  .nav-link {
+    padding: var(--space-3) var(--space-4);
+    font-size: 0.9rem;
+  }
+
+  .user-menu {
+    margin-left: var(--space-5);
+    padding-left: var(--space-5);
+  }
+}
+
+@media (max-width: 900px) {
+  .nav-container {
+    padding: 0 var(--space-5);
+    flex-wrap: wrap;
+    height: auto;
+    padding: var(--space-5);
+    gap: var(--space-4);
+  }
+
+  .nav-logo {
+    font-size: 1.5rem;
+  }
+
+  .navbar::after {
+    display: none;
+  }
+
+  .nav-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    order: 3;
+    gap: var(--space-1);
+  }
+
+  .nav-link {
+    font-size: 0.88rem;
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .nav-link.active::after {
+    display: none;
+  }
+
+  .user-menu {
+    margin-left: 0;
+    padding-left: 0;
+    border-left: none;
+    order: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    order: 2;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.15);
+    padding: var(--space-6);
+    border-top: 3px solid var(--neon-blue);
+    animation: fadeInUp 0.3s var(--ease-out);
+    gap: var(--space-2);
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .nav-link {
+    padding: var(--space-4) var(--space-5);
+    text-align: center;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    font-size: 1rem;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    background: rgba(0, 212, 255, 0.08);
+  }
+
+  .user-menu {
+    flex-direction: column;
+    padding: var(--space-5);
+    border-top: 2px solid var(--slate-100);
+    margin-top: var(--space-4);
+    gap: var(--space-4);
+    width: 100%;
+    align-items: center;
+  }
+
+  .logout-btn {
+    width: 100%;
+    max-width: 240px;
+    justify-content: center;
+    padding: 16px 28px;
+  }
+}
