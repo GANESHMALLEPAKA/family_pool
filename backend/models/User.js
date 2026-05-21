@@ -26,6 +26,11 @@ const userSchema = new mongoose.Schema({
   avatar: String,
   dateOfBirth: Date,
   phone: String,
+  salary: {
+    type: Number,
+    default: 0
+  },
+  bio: String,
   isActive: {
     type: Boolean,
     default: true

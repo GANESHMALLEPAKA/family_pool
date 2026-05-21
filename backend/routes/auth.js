@@ -2,6 +2,7 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 import Family from '../models/Family.js';
+import auth from '../middleware/auth.js';
 
 const router = express.Router();
 
@@ -13,7 +14,6 @@ router.post('/register', async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
 
-    // Input validation
     if (!name || !email || !password) {
       return res.status(400).json({ message: 'Name, email and password are required' });
     }
@@ -43,7 +43,6 @@ router.post('/register', async (req, res) => {
       role: role || 'patriarch' 
     });
 
-    // Auto-create a family for the new user
     const family = await Family.create({
       name: `${name.trim()}'s Family`,
       patriarch: user._id,
@@ -68,6 +67,7 @@ router.post('/register', async (req, res) => {
         name: user.name,
         email: user.email,
         role: user.role,
+        salary: user.salary || 0,
         familyId: family._id
       }
     });
@@ -82,7 +82,6 @@ router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Input validation
     if (!email || !password) {
       return res.status(400).json({ message: 'Email and password are required' });
     }
@@ -100,7 +99,6 @@ router.post('/login', async (req, res) => {
       return res.status(403).json({ message: 'Account is deactivated' });
     }
 
-    // Find the user's family
     const family = await Family.findOne({ patriarch: user._id });
 
     const token = jwt.sign(
@@ -116,12 +114,55 @@ router.post('/login', async (req, res) => {
         name: user.name,
         email: user.email,
         role: user.role,
+        salary: user.salary || 0,
         familyId: family?._id || null
       }
     });
   } catch (error) {
     console.error('Login error:', error.message);
     res.status(500).json({ message: 'Login failed. Please try again.' });
+  }
+});
+
+// GET /api/auth/me — Get current user's full profile
+router.get('/me', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id).select('-password');
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to fetch profile' });
+  }
+});
+
+// PATCH /api/auth/me — Any member can update their own profile (name, phone, salary, bio, dateOfBirth)
+router.patch('/me', auth, async (req, res) => {
+  try {
+    const allowedUpdates = ['name', 'phone', 'salary', 'bio', 'dateOfBirth', 'avatar'];
+    const updates = {};
+    allowedUpdates.forEach(field => {
+      if (req.body[field] !== undefined) {
+        updates[field] = req.body[field];
+      }
+    });
+
+    if (updates.salary !== undefined) {
+      updates.salary = Number(updates.salary);
+      if (isNaN(updates.salary) || updates.salary < 0) {
+        return res.status(400).json({ message: 'Salary must be a valid positive number' });
+      }
+    }
+
+    const user = await User.findByIdAndUpdate(
+      req.user._id,
+      { $set: updates },
+      { new: true, runValidators: true }
+    ).select('-password');
+
+    res.json({ message: 'Profile updated successfully', user });
+  } catch (error) {
+    console.error('Profile update error:', error.message);
+    res.status(500).json({ message: 'Failed to update profile' });
   }
 });
 

@@ -69,19 +69,12 @@ const GoalsManager = () => {
         note: newContribution.note.trim()
       });
 
-      // Load stripe and redirect
-      const { loadStripe } = await import('@stripe/stripe-js');
-      // Using dummy PK for local testing
-      const stripe = await loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY || 'pk_test_1234567890');
-      
-      if (!stripe) throw new Error('Stripe failed to initialize.');
-
-      const result = await stripe.redirectToCheckout({
-        sessionId: response.data.id
-      });
-
-      if (result.error) {
-        alert(result.error.message);
+      // The backend returns the Stripe checkout URL directly — redirect to it
+      const checkoutUrl = response.data.url;
+      if (checkoutUrl) {
+        window.location.href = checkoutUrl;
+      } else {
+        throw new Error('No checkout URL returned from server.');
       }
     } catch (err) {
       alert(err.response?.data?.message || err.message || 'Failed to initialize payment gateway');
