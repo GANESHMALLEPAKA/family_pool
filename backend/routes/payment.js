@@ -16,11 +16,16 @@ if (process.env.STRIPE_SECRET_KEY) {
   });
 }
 
-const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000';
+// Use FRONTEND_ORIGIN or FRONTEND_URL — whichever is set on Render/Netlify
+const FRONTEND_URL = process.env.FRONTEND_ORIGIN || process.env.FRONTEND_URL || 'http://localhost:3000';
 
 router.post('/create-checkout-session', auth, async (req, res) => {
   try {
     const { amount, goalId, note } = req.body;
+
+    if (!amount || Number(amount) <= 0) {
+      return res.status(400).json({ message: 'Amount must be greater than 0' });
+    }
 
     const goal = await Goal.findById(goalId);
     if (!goal) {
@@ -31,15 +36,20 @@ router.post('/create-checkout-session', auth, async (req, res) => {
       return res.status(500).json({ message: 'Stripe is not configured on the server.' });
     }
 
-    // Replace req.user.familyId check with Family patriarch validation
     const family = await Family.findById(goal.familyId);
-    const isMember = family && (family.patriarch.toString() === req.user._id.toString() || family.members.some(m => m.userId?.toString() === req.user._id.toString()));
+    const isMember = family && (
+      family.patriarch.toString() === req.user._id.toString() ||
+      family.members.some(m => m.userId?.toString() === req.user._id.toString())
+    );
     if (!isMember) {
       return res.status(403).json({ message: 'Goal not found or unauthorized' });
     }
 
-    // Amount is coming in Rupees. Stripe needs lowest denomination (paise)
+    // Amount comes in Rupees. Stripe needs paise (lowest denomination). Min is 50 paise = ₹0.50
     const unitAmount = Math.round(Number(amount) * 100);
+    if (unitAmount < 50) {
+      return res.status(400).json({ message: 'Minimum contribution amount is ₹1' });
+    }
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -60,22 +70,20 @@ router.post('/create-checkout-session', auth, async (req, res) => {
       success_url: `${FRONTEND_URL}/goals?success=true&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${FRONTEND_URL}/goals?canceled=true`,
       metadata: {
-        goalId: goalId,
-        userId: req.user._id.toString(),
-        familyId: family._id.toString(),
+        // Stripe requires ALL metadata values to be strings
+        goalId: String(goalId),
+        userId: String(req.user._id),
+        familyId: String(family._id),
         note: note || '',
-        amount: Number(amount)
+        amount: String(Number(amount))
       }
     });
 
     res.json({ id: session.id, url: session.url });
   } catch (error) {
-    console.error('Stripe Checkout Error:', error);
+    console.error('Stripe Checkout Error:', error.message);
     res.status(500).json({ message: 'Payment gateway error', error: error.message });
   }
 });
-
-// A webhook route would typically go here to listen to 'checkout.session.completed'
-// and permanently update the `currentAmount` in the DB securely.
 
 export default router;
